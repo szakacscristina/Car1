@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
     class CarRepositoryTest {
@@ -15,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
         void insertShouldAddCakes() {
             CarValidator validator = new CarValidator();
             CarRepository repository = new CarRepository(validator);
-            Car car1 = new Car(1,"2",2004,100,100,true);
-            Car car2 = new Car(2,"2",2005,100,100,true);
-            Car car1Dupe = new Car(1,"2",2006,100,100,true);
+            Car car1 = new Car("1","2",2004,100,100,true);
+            Car car2 = new Car("2","2",2005,100,100,true);
+            Car car1Dupe = new Car("1","2",2006,100,100,true);
 
             repository.insert(car1);
             List<Car> all = repository.getAll();

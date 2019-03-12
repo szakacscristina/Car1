@@ -4,14 +4,14 @@
 import java.util.Objects;
 
     public class Car {
-        private int id;
+        private String id;
         private String model;
         private int boughtYear ;
         private double kilometers;
         private int yearOffabrication;
         private boolean inWarranty;
 
-        public Car(int id, String model, int boughtYear, double kilometers, int yearOffabrication, boolean inWarranty) {
+        public Car(String id, String model, int boughtYear, double kilometers, int yearOffabrication, boolean inWarranty) {
             this.id = id;
             this.model = model;
             this.boughtYear = boughtYear;
@@ -51,11 +51,11 @@ import java.util.Objects;
                     '}';
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

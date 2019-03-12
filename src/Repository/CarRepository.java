@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
     public class CarRepository {
-        private Map<Integer, Car> storage = new HashMap<Integer, Car>();
+        private Map<String, Car> storage = new HashMap<>();
         private CarValidator validator;
 
         /**
@@ -25,12 +25,12 @@ import java.util.Map;
          * @param id
          * @return
          */
-        public Car getById(Integer id) {
+        public Car getById(String id) {
             return storage.get(id);
         }
-
         /**
          *
+
          * @param car
          */
         public void insert(Car car) {
@@ -59,7 +59,7 @@ import java.util.Map;
          *
          * @param id
          */
-        public void remove(Integer id) {
+        public void remove(String id) {
             if (!storage.containsKey(id)) {
                 throw new RuntimeException(String.format("There is no car with id=%s", id));
             }

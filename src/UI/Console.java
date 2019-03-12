@@ -1,147 +1,262 @@
 package UI;
 
 import Domain.Car;
+import Domain.Client;
+//import Domain.Transaction;
 import Service.CarService;
+import Service.ClientService;
+//import Service.TransactionService;
 
 import java.util.Scanner;
 
-    public class Console {
-        private CarService carService;
-        private Scanner scanner;
+public class Console {
 
-        public Console(CarService carService) {
-            this.carService = carService;
-            this.scanner = new Scanner(System.in);
-        }
+    private CarService carService;
+    private ClientService clientService;
+   // private TransactionService transactionService;
 
-        public void run() {
-            while (true) {
-                showMenu();
+    private Scanner scanner;
 
-                String option = scanner.nextLine();
-                switch (option) {
-                    case "1":
-                        runCars();
-                        break;
-                    case "2":
-                        //runClients();
-                        break;
-                    case "3":
-                        //runTransactions();
-                        break;
-                    case "x":
-                        return;
-                    default:
-                        System.out.println("Optiune invalida!");
-                        break;
-                }
+    public Console(CarService carService, ClientService clientService) /**TransactionService transactionService)**/ {
+        this.carService = carService;
+        this.clientService = clientService;
+       // this.transactionService = transactionService;
+
+        this.scanner = new Scanner(System.in);
+    }
+
+    private void showMenu() {
+        System.out.println("1. Cake CRUD");
+        System.out.println("2. Client CRUD");
+        System.out.println("3. Transaction CRUD");
+        System.out.println("x. Exit");
+    }
+
+    public void run() {
+        while (true) {
+            showMenu();
+
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1":
+                    runCarCrud();
+                    break;
+                case "2":
+                    runClientCrud();
+                    break;
+                case "3":
+                   // runTransactionCrud();
+                    break;
+                case "x":
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+                    break;
             }
-        }
-
-        private void runCars() {
-            while (true) {
-                showCarsMenu();
-                String option = scanner.nextLine();
-                switch (option) {
-                    case "1":
-                        handleAddCar();
-                        break;
-                    case "2":
-                        handleUpdateCar();
-                        break;
-                    case "3":
-                        handleRemoveCar();
-                        break;
-                    case "4":
-                        handleShowAllCars();
-                        break;
-                    case "x":
-                        return;
-                    default:
-                        System.out.println("Optiune invalida!");
-                }
-            }
-        }
-
-        private void handleShowAllCars() {
-            for (Car car : carService.getAll()) {
-                System.out.println(car);
-            }
-        }
-
-        private void handleRemoveCar() {
-            try {
-                System.out.print("Enter id to remove: ");
-                Integer id = Integer.valueOf(scanner.nextLine());
-
-                carService.remove(id);
-
-                System.out.println("Car removed successfully!");
-            } catch (RuntimeException rex) {
-                System.out.println("Errors:\n" + rex.getMessage());
-            }
-        }
-
-        private void handleUpdateCar() {
-            try {
-                System.out.print("Enter id to update: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter new model: ");
-                String model = scanner.nextLine();
-                System.out.print("Enter new bought year: ");
-                int boughtYear = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter new number of kilometers: ");
-                double kilometers = Double.parseDouble(scanner.nextLine());
-                System.out.print("Enter new yearOffabrication: ");
-                int yearOffabrication = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter new warranty (true/false): ");
-                boolean inWarranty = Boolean.parseBoolean(scanner.nextLine());
-
-                carService.update(id, model, boughtYear, kilometers, yearOffabrication, inWarranty);
-
-                System.out.println("Car updated successfully!");
-            } catch (RuntimeException rex) {
-                System.out.println("Errors:\n" + rex.getMessage());
-            }
-        }
-
-        private void handleAddCar() {
-            try {
-                System.out.print("Enter id: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter model: ");
-                String model = scanner.nextLine();
-                System.out.print("Enter bought year: ");
-                int boughtYear = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter number of kilometers: ");
-                double kilometers = Double.parseDouble(scanner.nextLine());
-                System.out.print("Enter year of fabrication: ");
-                int yearOffabrication = Integer.parseInt(scanner.nextLine());
-                System.out.print("Enter warranty (true/false): ");
-                boolean inWarranty = Boolean.parseBoolean(scanner.nextLine());
-
-                carService.insert(id, model, boughtYear, kilometers, yearOffabrication, inWarranty);
-
-                System.out.println("Car added successfully!");
-            } catch (RuntimeException rex) {
-                System.out.println("Errors:\n" + rex.getMessage());
-            }
-        }
-
-        private void showCarsMenu() {
-            System.out.println("1. Add car");
-            System.out.println("2. Update car");
-            System.out.println("3. Remove car");
-            System.out.println("4. Show all");
-            System.out.println("x. Back");
-        }
-
-        private void showMenu() {
-            System.out.println("1. CRUD Cars");
-            System.out.println("2. CRUD Clients");
-            System.out.println("3. CRUD Transactions");
-            System.out.println("x. Exit");
         }
     }
 
+  /**  private void runTransactionCrud() {
+        while (true) {
+            System.out.println("1. Add or update a transaction");
+            System.out.println("2. Remove a transaction");
+            System.out.println("3. View all transactions");
+            System.out.println("4. Back");
 
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1":
+                    handleAddUpdateTransaction();
+                    break;
+                case "2":
+                    handleRemoveTransaction();
+                    break;
+                case "3":
+                    handleViewTransactions();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+                    break;
+            }
+        }
+    }
+
+    private void handleViewTransactions() {
+        for (Transaction transaction : transactionService.getAll()) {
+            System.out.println(transaction);
+        }
+    }
+
+    private void handleRemoveTransaction() {
+        try {
+            System.out.print("Enter the id to remove:");
+            String id = scanner.nextLine();
+            transactionService.remove(id);
+
+            System.out.println("Transaction removed!");
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }
+
+    private void handleAddUpdateTransaction() {
+        try {
+            System.out.print("Enter id: ");
+            String id = scanner.nextLine();
+            System.out.print("Enter cake id (empty to not change for update): ");
+            String idCake = scanner.nextLine();
+            System.out.print("Enter client card (empty to not change for update): ");
+            String idClientCard = scanner.nextLine();
+            System.out.print("Enter number of items (0 to not change for update): ");
+            int numberOfItems = Integer.parseInt(scanner.nextLine());
+            System.out.print("Enter date (empty to not change for update): ");
+            String date = scanner.nextLine();
+            System.out.print("Enter time (empty to not change for update): ");
+            String time = scanner.nextLine();
+
+            Transaction transaction = transactionService.addOrUpdate(id, idCake, idClientCard, numberOfItems, date, time);
+            System.out.println(String.format("Added transaction id=%s, paid price=%f, discount=%f%%", transaction.getId(), transaction.getDiscountedPrice(), transaction.getDiscount()));
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }**/
+
+    private void runClientCrud() {
+        while (true) {
+            System.out.println("1. Add or update a client");
+            System.out.println("2. Remove a client");
+            System.out.println("3. View all clients");
+            System.out.println("4. Back");
+
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1":
+                    handleAddUpdateClient();
+                    break;
+                case "2":
+                    handleRemoveClient();
+                    break;
+                case "3":
+                    handleViewClients();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+                    break;
+            }
+        }
+    }
+
+    private void handleViewClients() {
+        for (Client client : clientService.getAll()) {
+            System.out.println(client);
+        }
+    }
+
+    private void handleRemoveClient() {
+        try {
+            System.out.print("Enter the id to remove:");
+            String id = scanner.nextLine();
+            clientService.remove(id);
+
+            System.out.println("Client removed!");
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }
+
+    private void handleAddUpdateClient() {
+        try {
+            System.out.print("Enter id: ");
+            String id = scanner.nextLine();
+            System.out.print("Enter last name (empty to not change for update): ");
+            String lastName = scanner.nextLine();
+            System.out.print("Enter first name (empty to not change for update): ");
+            String firstName = scanner.nextLine();
+            System.out.print("Enter CNP (empty to not change for update): ");
+            String CNP = scanner.nextLine();
+            System.out.print("Enter date of birth (empty to not change for update): ");
+            String dateOfBirth = scanner.nextLine();
+            System.out.print("Enter date of registration (empty to not change for update): ");
+            String dateOfRegistration = scanner.nextLine();
+
+            clientService.addOrUpdate(id, lastName, firstName, CNP, dateOfBirth, dateOfRegistration);
+
+            System.out.println("Client added!");
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }
+
+    private void runCarCrud() {
+        while (true) {
+            System.out.println("1. Add or update a car");
+            System.out.println("2. Remove a car");
+            System.out.println("3. View all cars");
+            System.out.println("4. Back");
+
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1":
+                    handleAddUpdateCar();
+                    break;
+                case "2":
+                    handleRemoveCar();
+                    break;
+                case "3":
+                    handleViewCars();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+                    break;
+            }
+        }
+    }
+
+    private void handleViewCars() {
+        for (Car car : carService.getAll()) {
+            System.out.println(car);
+        }
+    }
+
+    private void handleRemoveCar() {
+        try {
+            System.out.print("Enter the id to remove:");
+            String id = scanner.nextLine();
+            carService.remove(id);
+
+            System.out.println("Car removed!");
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }
+
+    private void handleAddUpdateCar() {
+
+        try {
+            System.out.print("Enter id: ");
+            String id = scanner.nextLine();
+            System.out.print("Enter model (empty to not change for update): ");
+            String model = scanner.nextLine();
+            System.out.print("Enter bought year (empty to not change for update): ");
+            int  boughtYear = Integer.parseInt(scanner.nextLine());
+            System.out.print("Enter kilometers (0 to not change for update): ");
+            double kilometers = Double.parseDouble(scanner.nextLine());
+            System.out.print("Enter year of fabrication (0 to not change for update): ");
+            int yearOfFabrication = Integer.parseInt (scanner.nextLine());
+            System.out.print("Enter warranty (true / false): ");
+            boolean inWarranty = Boolean.parseBoolean(scanner.nextLine());
+
+            carService.addOrUpdate(id, model, boughtYear, kilometers, yearOfFabrication, inWarranty);
+
+            System.out.println("Cake added!");
+        } catch (Exception ex) {
+            System.out.println("Errors:\n" + ex.getMessage());
+        }
+    }
+}
