@@ -254,7 +254,7 @@ public class Console {
 
             carService.addOrUpdate(id, model, boughtYear, kilometers, yearOfFabrication, inWarranty);
 
-            System.out.println("Cake added!");
+            System.out.println("Car added!");
         } catch (Exception ex) {
             System.out.println("Errors:\n" + ex.getMessage());
         }
