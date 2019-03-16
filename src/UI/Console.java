@@ -2,10 +2,10 @@ package UI;
 
 import Domain.Car;
 import Domain.Client;
-//import Domain.Transaction;
+import Domain.Transaction;
 import Service.CarService;
 import Service.ClientService;
-//import Service.TransactionService;
+import Service.TransactionService;
 
 import java.util.Scanner;
 
@@ -13,14 +13,14 @@ public class Console {
 
     private CarService carService;
     private ClientService clientService;
-   // private TransactionService transactionService;
+    private TransactionService transactionService;
 
     private Scanner scanner;
 
-    public Console(CarService carService, ClientService clientService) /**TransactionService transactionService)**/ {
+    public Console(CarService carService, ClientService clientService, TransactionService transactionService){
         this.carService = carService;
         this.clientService = clientService;
-       // this.transactionService = transactionService;
+        this.transactionService = transactionService;
 
         this.scanner = new Scanner(System.in);
     }
@@ -45,7 +45,7 @@ public class Console {
                     runClientCrud();
                     break;
                 case "3":
-                   // runTransactionCrud();
+                   runTransactionCrud();
                     break;
                 case "x":
                     return;
@@ -56,7 +56,7 @@ public class Console {
         }
     }
 
-  /**  private void runTransactionCrud() {
+   private void runTransactionCrud() {
         while (true) {
             System.out.println("1. Add or update a transaction");
             System.out.println("2. Remove a transaction");
@@ -105,23 +105,23 @@ public class Console {
         try {
             System.out.print("Enter id: ");
             String id = scanner.nextLine();
-            System.out.print("Enter cake id (empty to not change for update): ");
-            String idCake = scanner.nextLine();
+            System.out.print("Enter car id (empty to not change for update): ");
+            String idCar = scanner.nextLine();
             System.out.print("Enter client card (empty to not change for update): ");
             String idClientCard = scanner.nextLine();
-            System.out.print("Enter number of items (0 to not change for update): ");
-            int numberOfItems = Integer.parseInt(scanner.nextLine());
+            System.out.print("Enter piece total (0 to not change for update): ");
+            double pieceTotal = Double.parseDouble(scanner.nextLine());
             System.out.print("Enter date (empty to not change for update): ");
             String date = scanner.nextLine();
             System.out.print("Enter time (empty to not change for update): ");
             String time = scanner.nextLine();
 
-            Transaction transaction = transactionService.addOrUpdate(id, idCake, idClientCard, numberOfItems, date, time);
+            Transaction transaction = transactionService.addOrUpdate(id, idCar, idClientCard, pieceTotal, date, time);
             System.out.println(String.format("Added transaction id=%s, paid price=%f, discount=%f%%", transaction.getId(), transaction.getDiscountedPrice(), transaction.getDiscount()));
         } catch (Exception ex) {
             System.out.println("Errors:\n" + ex.getMessage());
         }
-    }**/
+    }
 
     private void runClientCrud() {
         while (true) {

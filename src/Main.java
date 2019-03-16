@@ -1,13 +1,13 @@
 import Domain.CarValidator;
-import Domain.Client;
 import Domain.ClientValidator;
-//import Domain.TransactionValidator;
+import Domain.Client;
+import Domain.TransactionValidator;
 import Repository.CarRepository;
 import Repository.ClientRepository;
-//import Repository.TransactionRepository;
+import Repository.TransactionRepository;
 import Service.CarService;
 import Service.ClientService;
-//import Service.TransactionService;
+import Service.TransactionService;
 import UI.Console;
 
 public class Main {
@@ -16,17 +16,17 @@ public class Main {
 
         CarValidator carValidator = new CarValidator();
         ClientValidator clientValidator = new ClientValidator();
-        //TransactionValidator transactionValidator = new TransactionValidator();
+        TransactionValidator transactionValidator = new TransactionValidator();
 
         CarRepository carRepository = new CarRepository(carValidator);
         ClientRepository clientRepository = new ClientRepository(clientValidator);
-        //TransactionRepository transactionRepository = new TransactionRepository(transactionValidator);
+        TransactionRepository transactionRepository = new TransactionRepository(transactionValidator);
 
         CarService carService = new CarService(carRepository);
         ClientService clientService = new ClientService(clientRepository);
-       // TransactionService transactionService = new TransactionService(transactionRepository, cakeRepository);
+        TransactionService transactionService = new TransactionService(transactionRepository, carRepository);
 
-        Console console = new Console(carService, clientService)/**transactionService**/;
+        Console console = new Console(carService, clientService, transactionService);
         console.run();
     }
 }
