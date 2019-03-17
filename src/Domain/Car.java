@@ -99,7 +99,6 @@ import java.util.Objects;
             this.inWarranty = inWarranty;
         }
 
-
     }
 
 

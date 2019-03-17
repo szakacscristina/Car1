@@ -85,4 +85,8 @@ public class TransactionService {
     public List<Transaction> getAll () {
         return transactionRepository.getAll();
     }
+
+    public List<Transaction> getAllTransactions(){return transactionRepository.getAll();}
+
+
 }

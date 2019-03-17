@@ -104,12 +104,11 @@ import java.util.Objects;
             this.pieceTotal = pieceTotal;
         }
 
-        public double getWorkmanshipTotal() {
-            return workmanshipTotal;
-        }
-
         public void setWorkmanshipTotal(double workmanshipTotal) {
             this.workmanshipTotal = workmanshipTotal;
+        }
+        public double getWorkmanshipTotal() {
+            return workmanshipTotal;
         }
 
         public double getDiscount() {

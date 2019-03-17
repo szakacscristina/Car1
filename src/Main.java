@@ -9,6 +9,7 @@ import Service.CarService;
 import Service.ClientService;
 import Service.TransactionService;
 import UI.Console;
+import UI.ConsoleD;
 
 public class Main {
 
@@ -26,7 +27,11 @@ public class Main {
         ClientService clientService = new ClientService(clientRepository);
         TransactionService transactionService = new TransactionService(transactionRepository, carRepository);
 
-        Console console = new Console(carService, clientService, transactionService);
-        console.run();
+        /**Console console = new Console(carService, clientService, transactionService);
+        console.run();**/
+
+        ConsoleD doi = new ConsoleD(carService, clientService, transactionService);
+        doi.run();
+
     }
 }

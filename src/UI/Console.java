@@ -26,9 +26,10 @@ public class Console {
     }
 
     private void showMenu() {
-        System.out.println("1. Cake CRUD");
+        System.out.println("1. Car CRUD");
         System.out.println("2. Client CRUD");
         System.out.println("3. Transaction CRUD");
+        System.out.println("4. ICarUpdate CRUD");
         System.out.println("x. Exit");
     }
 
@@ -193,8 +194,8 @@ public class Console {
 
     private void runCarCrud() {
         while (true) {
-            System.out.println("1. Add or update a car");
             System.out.println("2. Remove a car");
+            System.out.println("1. Add or update a car");
             System.out.println("3. View all cars");
             System.out.println("4. Back");
 
@@ -259,4 +260,6 @@ public class Console {
             System.out.println("Errors:\n" + ex.getMessage());
         }
     }
-}
+
+    }
+

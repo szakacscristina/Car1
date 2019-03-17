@@ -1,21 +1,21 @@
 package Domain;
 
-    public class CarValidator {
+public class CarValidator {
 
-        public void validate(Car car) {
+    public void validate(Car car) {
 
-            String errors = "";
-            if (car.getKilometers() <= 0) {
-                errors += "The kilometers must be > 0!\n";
-            }
-            if (car.getYearOffabrication() <= 0) {
-                errors += "The yearOffabrication must be > 0!\n";
-            }
+        String errors = "";
+        if (car.getKilometers() <= 0) {
+            errors += "The kilometers must be > 0!\n";
+        }
+        if (car.getYearOffabrication() <= 0) {
+            errors += "The yearOffabrication must be > 0!\n";
+        }
 
-            if (!errors.isEmpty()) {
-                throw new RuntimeException(errors);
-            }
+        if (!errors.isEmpty()) {
+            throw new RuntimeException(errors);
         }
     }
+}
 
 

@@ -63,4 +63,6 @@ public class ClientService {
     public List<Client> getAll() {
         return repository.getAll();
     }
+
+    public List<Client> getClients(){ return repository.getAll();}
 }

@@ -60,6 +60,11 @@ import java.util.List;
         public List<Car> getAll() {
             return repository.getAll();
         }
+
+
+        public List <Car> getCars() {return repository.getAll();}
+
+
     }
 
 
