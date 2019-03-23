@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
             Transaction transaction = new Transaction("1","1","1","12.34.5678","12",234,45,10);
 
             repository.add(transaction);
-            Transaction transactionToFind = repository.getById(1);
+            Transaction transactionToFind = repository.getById("1");
             assertNotNull(transactionToFind, "Returned null for existing id!");
             assertEquals(transactionToFind.getId(), 1, String.format("Return id %s instead of correct id =1", transactionToFind.getId()));
             assertEquals(transactionToFind.getIdCar(), 1, String.format("Return medicine id %s instead of correct idMedicine=1 ", transactionToFind.getIdCar()));

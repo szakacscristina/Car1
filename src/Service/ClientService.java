@@ -46,7 +46,7 @@ public class ClientService {
             List<Client> CNPcheck= repository.getAll();
             for (Client c: CNPcheck){
                 if (c.getCNP().equals(CNP)){
-                    throw new RuntimeException("error: existent CNP");
+                    throw new ValidatorExceptionService("error: existent CNP");
                 }
             }
         }

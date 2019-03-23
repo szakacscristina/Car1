@@ -1,6 +1,6 @@
 import Domain.CarValidator;
 import Domain.ClientValidator;
-import Tests.TransactionValidator;
+import Domain.TransactionValidator;
 import Repository.CarRepository;
 import Repository.ClientRepository;
 import Repository.TransactionRepository;

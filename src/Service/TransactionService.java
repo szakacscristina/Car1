@@ -50,7 +50,7 @@ public class TransactionService {
 
         Car carSold = carRepository.findById(idCar);
         if (carSold == null) {
-            throw new RuntimeException("There is no car with the given id!");
+            throw new ValidatorExceptionService("There is no car with the given id!");
         }
         double workmanshipTotal = carSold.getYearOffabrication();
         double discount = 0;
