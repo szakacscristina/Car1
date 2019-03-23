@@ -49,7 +49,5 @@ public class ClientRepository {
         return new ArrayList<>(storage.values());
     }
 
-    public List<Client> show(String CNP) {
-        return storage.get(CNP);
     }
-}
+
