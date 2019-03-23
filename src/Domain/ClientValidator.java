@@ -13,13 +13,13 @@ import java.util.zip.DataFormatException;
             try {
                 format.parse(client.getDateOfBirth());
             } catch (ParseException pe) {
-                throw new RuntimeException("The date of birth is not in a correct format!");
+                throw new ValidatorException("The date of birth is not in a correct format!");
             }
 
             try {
                 format.parse(client.getDateOfRegistration());
             } catch (ParseException pe) {
-                throw new RuntimeException("The date of registration is not in a correct format!");
+                throw new ValidatorException("The date of registration is not in a correct format!");
             }
         }
     }

@@ -29,7 +29,7 @@ import java.util.Map;
 
         public void remove(String id) {
             if (!storage.containsKey(id)) {
-                throw new RuntimeException("There is no client with the given id to remove.");
+                throw new ValidatorExceptionRepository("There is no client with the given id to remove.");
             }
 
             storage.remove(id);

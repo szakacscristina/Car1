@@ -2,6 +2,7 @@ package Repository;
 
 import Domain.Transaction;
 import Domain.TransactionValidator;
+import Domain.ValidatorException;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import java.util.Map;
          */
         public void remove(String id) {
             if (!storage.containsKey(id)) {
-                throw new RuntimeException("There is no transaction with the given id to remove.");
+                throw new ValidatorExceptionRepository("There is no transaction with the given id to remove.");
             }
 
             storage.remove(id);

@@ -43,6 +43,12 @@ public class ClientService {
             if (dateOfRegistration.isEmpty()) {
                 dateOfRegistration = existing.getDateOfRegistration();
             }
+            List<Client> CNPcheck= repository.show();
+            for (Client c: CNPcheck){
+                if (c.getCNP().equals(CNP)){
+                    throw new RuntimeException("error: existent CNP");
+                }
+            }
         }
         Client client = new Client(id, lastName, firstName, CNP, dateOfBirth, dateOfRegistration);
         repository.upsert(client);

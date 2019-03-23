@@ -37,7 +37,7 @@ public class CarRepository {
      */
     public void remove(String id) {
         if (!storage.containsKey(id)) {
-            throw new RuntimeException("There is no cake with the given id to remove.");
+            throw new ValidatorExceptionRepository("There is no cake with the given id to remove.");
         }
 
         storage.remove(id);
