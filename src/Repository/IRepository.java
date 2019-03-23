@@ -1,5 +1,4 @@
-
-    package Repository;
+package Repository;
 
 import Domain.Car;
 import Domain.CarValidator;

@@ -2,6 +2,7 @@ package Repository;
 
 import Domain.Transaction;
 import Domain.TransactionValidator;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 
         /**
          * Adds or updates a transaction if it already exists.
+         *
          * @param transaction the transaction to add or update.
          */
         public void upsert(Transaction transaction) {
@@ -32,6 +34,7 @@ import java.util.Map;
 
         /**
          * Removes a transaction with a given id.
+         *
          * @param id the id.
          * @throws RuntimeException if there is no transaction with the given id.
          */
@@ -46,6 +49,20 @@ import java.util.Map;
         public List<Transaction> getAll() {
             return new ArrayList<>(storage.values());
         }
+
+        public void add(Transaction transaction1) {
+        }
+
+        public void delete(String id) {
+        }
+
+        public void update(Transaction transaction1Duplicate) {
+        }
+
+        public Transaction getById(String id) {
+            return storage.get(id);
+        }
     }
+
 
 

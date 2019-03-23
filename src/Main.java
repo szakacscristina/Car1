@@ -1,7 +1,6 @@
 import Domain.CarValidator;
 import Domain.ClientValidator;
-import Domain.Client;
-import Domain.TransactionValidator;
+import Tests.TransactionValidator;
 import Repository.CarRepository;
 import Repository.ClientRepository;
 import Repository.TransactionRepository;
@@ -9,7 +8,6 @@ import Service.CarService;
 import Service.ClientService;
 import Service.TransactionService;
 import UI.Console;
-import UI.ConsoleD;
 
 public class Main {
 

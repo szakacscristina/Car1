@@ -13,7 +13,7 @@ public class CarValidator {
         }
 
         if (!errors.isEmpty()) {
-            throw new RuntimeException(errors);
+            throw new ValidatorException("Nu s-a validat: " + errors);
         }
     }
 }
