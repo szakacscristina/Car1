@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MedicineServiceTest {
+class CarServiceTest {
 
     @Test
     void addOrUpdateServiceShouldAddCar() {
@@ -40,5 +40,17 @@ class MedicineServiceTest {
 
     @Test
     void getAllServiceShouldGetAllMedicine() {
+        CarValidator validator = new CarValidator();
+        CarRepository repository = new CarRepository(validator);
+        CarService medicineService = new CarService(repository);
+        Car car1 = new Car("1","bmw",6534,100000,8734,true);
+        Car car2 = new Car("2","mercedes",6534,10000,8723,true);
+
+        medicineService.addOrUpdate("1", "bmw", 7634, 10000, 3656, false);
+        medicineService.addOrUpdate("2", "mercedes", 6723, 160000, 7634, true);
+        assertEquals(car1, medicineService.getAll().get(0));
+        assertEquals(car2, medicineService.getAll().get(1));
+        assertFalse(medicineService.getAll().size() != 2);
     }
 }
+
