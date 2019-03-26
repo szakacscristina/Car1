@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ClientRepository {
+public class ClientRepository implements IRepository<Client> {
 
     private Map<String, Client> storage = new HashMap<>();
     private ClientValidator validator;
@@ -45,7 +45,7 @@ public class ClientRepository {
         storage.remove(id);
     }
 
-    public List<Client> getAll() {
+    public ArrayList<Client> getAll() {
         return new ArrayList<>(storage.values());
     }
 

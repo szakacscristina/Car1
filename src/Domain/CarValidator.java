@@ -1,6 +1,6 @@
 package Domain;
 
-public class CarValidator {
+public class CarValidator implements IValidator<Car> {
 
     public void validate(Car car) {
 

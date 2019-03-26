@@ -3,6 +3,7 @@ package Tests;
 import Domain.Transaction;
 import Domain.TransactionValidator;
 import Repository.CarRepository;
+import Repository.IRepository;
 import Repository.TransactionRepository;
 import Service.TransactionService;
 import org.junit.jupiter.api.Test;

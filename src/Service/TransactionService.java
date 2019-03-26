@@ -1,8 +1,8 @@
 package Service;
 
-import Domain.Car;
 import Domain.Transaction;
-import Repository.CarRepository;
+import Domain.Car;
+import Repository.IRepository;
 import Repository.TransactionRepository;
 
 import java.util.List;
@@ -10,13 +10,17 @@ import java.util.List;
 
 public class TransactionService {
 
-    private TransactionRepository transactionRepository;
-    private CarRepository carRepository;
+    private IRepository<Transaction> repository;
+    private IRepository<Car> carRepository;
 
-    public TransactionService(TransactionRepository transactionRepository, CarRepository carRepository) {
-        this.transactionRepository = transactionRepository;
+    public TransactionService(IRepository<Transaction> repository, IRepository<Car> carRepository){
+        this.repository = repository;
         this.carRepository = carRepository;
     }
+
+    public TransactionService(TransactionRepository repository) {
+    }
+
 
     /**
      * @param id
@@ -28,7 +32,7 @@ public class TransactionService {
      * @return
      */
     public Transaction addOrUpdate(String id, String idCar, String idClientCard, double pieceTotal, String date, String time) {
-        Transaction existing = transactionRepository.findById(id);
+        Transaction existing = repository.findById(id);
         if (existing != null) {
             // keep unchanged fields as they were
             if (idCar.isEmpty()) {
@@ -62,7 +66,7 @@ public class TransactionService {
             }
 
             Transaction transaction = new Transaction(id, idCar, idClientCard, date, time, pieceTotal, workmanshipTotal, discount);
-            transactionRepository.upsert(transaction);
+            repository.upsert(transaction);
             return transaction;
         }
 
@@ -75,7 +79,7 @@ public class TransactionService {
      * @param id
      */
     public void remove (String id){
-        transactionRepository.remove(id);
+        repository.remove(id);
     }
 
     /**
@@ -83,10 +87,10 @@ public class TransactionService {
      * @return
      */
     public List<Transaction> getAll () {
-        return transactionRepository.getAll();
+        return repository.getAll();
     }
 
-    public List<Transaction> getAllTransactions(){return transactionRepository.getAll();}
+    public List<Transaction> getAllTransactions(){return repository.getAll();}
 
 
 }

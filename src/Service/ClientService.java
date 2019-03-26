@@ -1,18 +1,19 @@
 package Service;
 
-import Domain.Car;
 import Domain.Client;
-import Repository.CarRepository;
-import Repository.ClientRepository;
-
+import Repository.IRepository;
 import java.util.List;
 
-public class ClientService {
+public class ClientService extends IsSearchable<Client>{
 
-    private ClientRepository repository;
+    private IRepository<Client> repository;
 
-    public ClientService(ClientRepository repository) {
-        this.repository = repository;
+    public ClientService(IRepository<Client> repo){
+        this.repository = repo;
+    }
+
+    public void searchFields(String[] terms){
+        super.fullTextSearch(terms, repository.getAll());
     }
 
     /**

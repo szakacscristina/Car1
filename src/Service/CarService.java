@@ -3,15 +3,20 @@
 
 import Domain.Car;
 import Repository.CarRepository;
+import Repository.IRepository;
 
 import java.util.List;
 
-    public class CarService {
 
-        private CarRepository repository;
+    public class CarService extends IsSearchable<Car> {
 
-        public CarService(CarRepository repository) {
+        private IRepository<Car> repository;
+
+        public CarService(IRepository<Car> repository){
             this.repository = repository;
+        }
+        public void searchFields(String[] terms){
+            super.fullTextSearch(terms, repository.getAll());
         }
 
         /**
@@ -23,14 +28,14 @@ import java.util.List;
          * @param yearOffabrication
          * @param inWarranty
          */
-        public void addOrUpdate(String id, String model, int boughtYear, double kilometers, int yearOffabrication, boolean inWarranty) {
+        public void addOrUpdate(String id, String model, String boughtYear, double kilometers, int yearOffabrication, boolean inWarranty) {
             Car existing = repository.findById(id);
             if (existing != null) {
                 // keep unchanged fields as they were
                 if (model.isEmpty()) {
                     model = existing.getModel();
                 }
-                if (boughtYear == 0) {
+                if (boughtYear .equals(0)) {
                     boughtYear = existing.getBoughtYear();
                 }
                 if (kilometers == 0) {

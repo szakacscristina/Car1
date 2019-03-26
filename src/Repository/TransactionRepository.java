@@ -1,5 +1,6 @@
 package Repository;
 
+import Domain.IValidator;
 import Domain.Transaction;
 import Domain.TransactionValidator;
 import Domain.ValidatorException;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-    public class TransactionRepository {
+    public class TransactionRepository implements IRepository<Transaction> {
 
         private Map<String, Transaction> storage = new HashMap<>();
         private TransactionValidator validator;
@@ -37,7 +38,7 @@ import java.util.Map;
          * Removes a transaction with a given id.
          *
          * @param id the id.
-         * @throws RuntimeException if there is no transaction with the given id.
+         * @throws ValidatorExceptionRepository if there is no transaction with the given id.
          */
         public void remove(String id) {
             if (!storage.containsKey(id)) {
@@ -47,14 +48,14 @@ import java.util.Map;
             storage.remove(id);
         }
 
-        public List<Transaction> getAll() {
+        public ArrayList<Transaction> getAll() {
             return new ArrayList<>(storage.values());
         }
 
         public void add(Transaction transaction1) {
         }
 
-        public void delete(String id) {
+        public void delete (String id) {
         }
 
         public void update(Transaction transaction1Duplicate) {

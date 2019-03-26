@@ -2,8 +2,9 @@
     package Domain;
 
 import java.util.Objects;
+import java.util.ArrayList;
 
-    public class Transaction {
+    public class Transaction extends Entity  {
 
         private String id, idCar, idClientCard, date, time;
         private double pieceTotal;
@@ -11,7 +12,7 @@ import java.util.Objects;
         private double discount;
 
         public Transaction(String id, String idCar, String idClientCard, String date, String time, double pieceTotal, double workmanshipTotal, double discount) {
-            this.id = id;
+            super(id);
             this.idCar = idCar;
             this.idClientCard = idClientCard;
             this.date = date;
@@ -118,4 +119,9 @@ import java.util.Objects;
         public void setDiscount(double discount) {
             this.discount = discount;
         }
+
+        public ArrayList<String> getSearchableFields(){
+            return new ArrayList<>();
+        }
     }
+

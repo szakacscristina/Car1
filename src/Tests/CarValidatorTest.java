@@ -11,7 +11,7 @@
         @Test
         public void validateCar() {
             CarValidator carV= new CarValidator();
-            Car car = new Car("1","bmw",1225,1000,1234,true);
+            Car car = new Car("1","bmw","1225",1000,1234,true);
             carV.validate(car);
             assertDoesNotThrow(() -> carV.validate(car));
 

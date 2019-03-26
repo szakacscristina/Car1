@@ -245,7 +245,7 @@ public class Console {
             System.out.print("Enter model (empty to not change for update): ");
             String model = scanner.nextLine();
             System.out.print("Enter bought year (empty to not change for update): ");
-            int  boughtYear = Integer.parseInt(scanner.nextLine());
+            String  boughtYear = scanner.nextLine();
             System.out.print("Enter kilometers (0 to not change for update): ");
             double kilometers = Double.parseDouble(scanner.nextLine());
             System.out.print("Enter year of fabrication (0 to not change for update): ");

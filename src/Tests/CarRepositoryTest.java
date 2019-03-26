@@ -14,7 +14,7 @@ class CarRepositoryTest {
 
         CarValidator validator = new CarValidator();
         CarRepository repository = new CarRepository(validator);
-        Car addedCar = new Car("1","bmw",1234,10000,5674,true);
+        Car addedCar = new Car("1","bmw","1234",10000,5674,true);
 
         repository.upsert(addedCar);
         Car existingCar = repository.findById("1");
@@ -33,7 +33,7 @@ class CarRepositoryTest {
     void removeShouldRemoveCars() {
         CarValidator validator = new CarValidator();
         CarRepository repository = new CarRepository(validator);
-        Car car1 = new Car("1","bmw",6534,100000,6534,true);
+        Car car1 = new Car("1","bmw","6534",100000,6534,true);
 
         repository.upsert(car1);
         repository.remove(car1.getId());
@@ -46,8 +46,8 @@ class CarRepositoryTest {
     void getAllShouldGetAllCars() {
         CarValidator validator = new CarValidator();
         CarRepository repository = new CarRepository(validator);
-        Car car1 = new Car("1","bmw",6534,100000,8734,true);
-        Car car2 = new Car("2","mercedes",6534,10000,8723,true);
+        Car car1 = new Car("1","bmw","6534",100000,8734,true);
+        Car car2 = new Car("2","mercedes","6534",10000,8723,true);
 
         repository.upsert(car1);
         repository.upsert(car2);

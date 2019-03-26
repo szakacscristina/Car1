@@ -39,7 +39,7 @@ public class ConsoleD {
             String[] option = requirement.split(",");
             if (option[0].toLowerCase().contains("car")) {
                 if (option[0].equalsIgnoreCase("addcar")) {
-                    handleAddUpdateCar((option[1]), option[2], Integer.parseInt(option[3]), Double.parseDouble(option[4]), Integer.parseInt(option[5]), Boolean.parseBoolean(option[6]));
+                    handleAddUpdateCar((option[1]), option[2],option[3], Double.parseDouble(option[4]), Integer.parseInt(option[5]), Boolean.parseBoolean(option[6]));
                 }
                 if (option[0].equalsIgnoreCase("removecar")) {
                     handleRemoveCar(option[1]);
@@ -92,7 +92,7 @@ public class ConsoleD {
             }
         }
 
-        private void handleAddUpdateCar(String id, String model, int boughtYear, double kilometers, int yearOffabrication, boolean inWarranty){
+        private void handleAddUpdateCar(String id, String model, String boughtYear, double kilometers, int yearOffabrication, boolean inWarranty){
             try {
                 carService.addOrUpdate(id, model, boughtYear, kilometers, yearOffabrication, inWarranty);
                 System.out.println("Product added!");

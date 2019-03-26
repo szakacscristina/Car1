@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CarRepository {
+public class CarRepository implements IRepository<Car> {
 
     private Map<String, Car> storage = new HashMap<>();
     private CarValidator validator;
@@ -33,7 +33,7 @@ public class CarRepository {
     /**
      * Removes a cake with a given id.
      * @param id the id.
-     * @throws RuntimeException if there is no cake with the given id.
+     * @throws ValidatorExceptionRepository if there is no cake with the given id.
      */
     public void remove(String id) {
         if (!storage.containsKey(id)) {
@@ -43,7 +43,7 @@ public class CarRepository {
         storage.remove(id);
     }
 
-    public List<Car> getAll() {
+    public ArrayList<Car> getAll() {
         return new ArrayList<>(storage.values());
     }
 
