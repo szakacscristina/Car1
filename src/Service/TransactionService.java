@@ -3,8 +3,12 @@ package Service;
 import Domain.Transaction;
 import Domain.Car;
 import Repository.IRepository;
+import Repository.TransactionRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 public class TransactionService {
@@ -20,7 +24,7 @@ public class TransactionService {
     public TransactionService(TransactionRepository repository) {
     }
 
-    public double getPaidPrice(String idCar, double pieceTotal, String idClientCard){
+    public double PaidPrice(String idCar, double pieceTotal, String idClientCard){
         // determine the price paid for this transaction
         List<Car> cars = carRepository.getAll();
 
@@ -88,7 +92,25 @@ public class TransactionService {
 
         return existing;
     }
+    public List<Transaction> displayTransaction() {
+        int count = 0;
+        double avg=0;
+        List<Transaction> transList = new ArrayList<>();
+        for(Transaction t: repository.getAll()){
+            Car carSold = carRepository.findById(t.getIdCar());
+            avg += t.getDiscount()*t.getPieceTotal()*carSold.getPaidPrice();
+            count ++;
+        }
+        avg = avg / count;
 
+        for(Transaction t: repository.getAll()){
+            Car carSold = carRepository.findById(t.getIdCar());
+            if ( avg < t.getDiscount()*t.getPieceTotal()*carSold.getPaidPrice()){
+                transList.add(t);
+            }
+        }
+        return transList;
+    }
     /**
      *
      * @param id

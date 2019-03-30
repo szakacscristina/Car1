@@ -79,6 +79,8 @@ public class Console {
                     handleViewTransactions();
                     break;
                 case "4":
+                    handleViewTransactionsAvg();
+                case "5":
                     return;
                 default:
                     System.out.println("Invalid option!");
@@ -87,6 +89,11 @@ public class Console {
         }
     }
 
+    private void handleViewTransactionsAvg(){
+        for(Transaction t : transactionService.displayTransaction()){
+            System.out.println(t);
+        }
+    }
     private void handleViewTransactions() {
         for (Transaction transaction : transactionService.getAll()) {
             System.out.println(transaction);

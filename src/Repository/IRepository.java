@@ -8,7 +8,9 @@ import java.util.List;
 public interface IRepository <T extends Entity>{
 
     T findById(String id);
-    void addorUpdate(T car);
+    void upsert(T car);
     void remove(String id);
     List<T> getAll();
+
+
 }

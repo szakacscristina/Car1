@@ -37,4 +37,5 @@ public abstract class Entity {
 
     public abstract ArrayList<String> getSearchableFields();
 
+    public abstract double getPaidPrice();
 }
