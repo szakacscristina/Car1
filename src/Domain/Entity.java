@@ -1,4 +1,3 @@
-
 package Domain;
 
 import java.util.ArrayList;
@@ -39,5 +38,3 @@ public abstract class Entity {
     public abstract ArrayList<String> getSearchableFields();
 
 }
-
-

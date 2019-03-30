@@ -1,9 +1,5 @@
+package Domain;
 
-    package Domain;
-
-    public interface IValidator<T extends Entity> {
-
-        void validate(T entity);
-    }
-
-
+public interface IValidator<T extends Entity> {
+    void validate(T entity);
+}

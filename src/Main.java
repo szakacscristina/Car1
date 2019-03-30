@@ -10,12 +10,9 @@ import Service.CarService;
 import Service.TransactionService;
 import UI.MainController;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 

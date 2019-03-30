@@ -2,6 +2,7 @@ package Tests;
 
 import Domain.Client;
 import Domain.ClientValidator;
+import Repository.ClientRepository;
 import Service.ClientService;
 import org.junit.jupiter.api.Test;
 

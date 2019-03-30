@@ -2,6 +2,7 @@ package Tests;
 
 import Domain.Car;
 import Domain.CarValidator;
+import Repository.CarRepository;
 import Service.CarService;
 import org.junit.jupiter.api.Test;
 

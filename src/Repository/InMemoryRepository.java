@@ -3,6 +3,7 @@ package Repository;
 
 import Domain.Entity;
 import Domain.IValidator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,20 +16,49 @@ public class InMemoryRepository<T extends Entity> implements IRepository<T> {
         this.validator = validator;
     }
 
-    public T findById(String id){
+    public T getById(int id){
         return repository.get(id);
     }
 
-    public void upsert(T entity){
+    public void insert(T entity){
+        if (repository.containsKey(entity.getId())){
+            throw new DuplicateEntityException("ERROR: An entity with that ID already exists!");
+        } else{
             validator.validate(entity);
             repository.put(entity.getId(), entity);
         }
-    public void remove(String id){
+    }
+
+    public void update(T entity){
+        if (!repository.containsKey(entity.getId())){
+            throw new RuntimeException("ERROR: There is no entity with that ID!");
+        } else{
+            validator.validate(entity);
+            repository.put(entity.getId(), entity);
+        }
+    }
+
+    public void remove(int id){
         if (!repository.containsKey(id)){
-            throw new ValidatorExceptionRepository("ERROR: There is no entity with that ID");
+            throw new RuntimeException("ERROR: There is no entity with that ID");
         } else {
             repository.remove(id);
         }
+    }
+
+    @Override
+    public T findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void addorUpdate(T car) {
+
+    }
+
+    @Override
+    public void remove(String id) {
+
     }
 
     public ArrayList<T> getAll(){

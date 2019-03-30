@@ -2,6 +2,7 @@ package Tests;
 
 import Domain.Car;
 import Domain.CarValidator;
+import Repository.CarRepository;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
