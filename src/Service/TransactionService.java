@@ -3,7 +3,6 @@ package Service;
 import Domain.Transaction;
 import Domain.Car;
 import Repository.IRepository;
-import Repository.TransactionRepository;
 
 import java.util.List;
 
@@ -19,6 +18,22 @@ public class TransactionService {
     }
 
     public TransactionService(TransactionRepository repository) {
+    }
+
+    public double getPaidPrice(String idCar, double pieceTotal, String idClientCard){
+        // determine the price paid for this transaction
+        List<Car> cars = carRepository.getAll();
+
+        for (Car car : cars){
+            if (car.getId() == idCar){
+                double initialPrice = car.getKilometers() * pieceTotal;
+                if (idClientCard != null){
+                    if (car.isInWarranty()) return initialPrice - (10.00/100 * initialPrice);
+                    else return initialPrice - (10.00/100 * initialPrice);
+                } else return initialPrice;
+            }
+        }
+        throw new ValidatorExceptionService("Wrong Car ID ERROR: Found no Car for this transaction.");
     }
 
 

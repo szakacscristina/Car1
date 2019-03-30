@@ -46,7 +46,10 @@ public class Console {
                     runClientCrud();
                     break;
                 case "3":
-                   runTransactionCrud();
+                    runTransactionCrud();
+                    break;
+                case "4":
+                    handleSearch();
                     break;
                 case "x":
                     return;
@@ -57,7 +60,7 @@ public class Console {
         }
     }
 
-   private void runTransactionCrud() {
+    private void runTransactionCrud() {
         while (true) {
             System.out.println("1. Add or update a transaction");
             System.out.println("2. Remove a transaction");
@@ -122,6 +125,7 @@ public class Console {
         } catch (Exception ex) {
             System.out.println("Errors:\n" + ex.getMessage());
         }
+
     }
 
     private void runClientCrud() {
@@ -260,6 +264,12 @@ public class Console {
             System.out.println("Errors:\n" + ex.getMessage());
         }
     }
-
+    public void handleSearch(){
+        System.out.println("Enter search terms below:");
+        String[] terms = scanner.nextLine().split("\\s");
+        carService.searchFields(terms);
+        clientService.searchFields(terms);
     }
+
+}
 

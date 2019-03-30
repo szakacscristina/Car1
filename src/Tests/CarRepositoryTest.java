@@ -2,7 +2,6 @@ package Tests;
 
 import Domain.Car;
 import Domain.CarValidator;
-import Repository.CarRepository;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarRepositoryTest {
 
     @Test
-    void findByIdWithExistingIdShouldReturnCorrectMedicine() {
+    void findByIdWithExistingIdShouldReturnCorrectCar() {
 
         CarValidator validator = new CarValidator();
         CarRepository repository = new CarRepository(validator);

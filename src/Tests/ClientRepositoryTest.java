@@ -2,10 +2,7 @@ package Tests;
 
 import Domain.Client;
 import Domain.ClientValidator;
-import Repository.ClientRepository;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +16,7 @@ class ClientRepositoryTest {
 
         repository.upsert(client1);
         Client clientToFind = repository.findById("1");
-        assertNotNull(clientToFind, "Return null for existing id");
+        assertNotNull(clientToFind, "Return not <null> for existing id");
         assertEquals(clientToFind.getId(), 1, String.format("Return id %s instead of correct id=1", clientToFind.getId()));
         assertEquals(clientToFind.getLastName(), "TestFirst", String.format("Return name %s instead of correct name=TestFirst", clientToFind.getLastName()));
         assertEquals(clientToFind.getFirstName(), "TestFirst", String.format("Return first name %s instead of correct firstName=TestFirst", clientToFind.getFirstName()));
